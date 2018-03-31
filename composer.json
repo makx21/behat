@@ -1,0 +1,15 @@
+{
+    "name": "develop/behat-json-api-tester",
+    "description": "A project for testing JSON APIs",
+    "type": "project",
+    "require": {
+        "behat/behat": "^3.4",
+        "imbo/behat-api-extension": "^2.1"
+    },
+    "authors": [
+        {
+            "name": "makx",
+            "email": "mtrofimov@gmail.com"
+        }
+    ]
+}
