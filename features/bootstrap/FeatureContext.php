@@ -32,6 +32,28 @@ class FeatureContext implements Context
     }
 
     /**
+     * @BeforeScenario
+     */
+    public function cleanUpDatabase()
+    {
+        $host = '0.0.0.0';
+        $db   = 'basic_api';
+        $port = 3306;
+        $user = 'root';
+        $pass = '';
+        $charset = 'utf8mb4';
+
+        $dsn = "mysql:host=$host;port=$port;dbname=$db;charset=$charset";
+        $opt = [
+            PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_EMULATE_PREPARES   => false,
+        ];
+        $pdo = new PDO($dsn, $user, $pass, $opt);
+
+        $pdo->query('TRUNCATE album');
+    }
+
+    /**
      * @Given there are Albums with the following details:
      */
     public function thereAreAlbumsWithTheFollowingDetails(TableNode $albums)
