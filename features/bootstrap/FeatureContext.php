@@ -32,15 +32,15 @@ class FeatureContext implements Context
     }
 
     /**
-     * @BeforeScenario
+     * @ BeforeScenario
      */
     public function cleanUpDatabase()
     {
-        $host = '0.0.0.0';
-        $db   = 'basic_api';
+        $host = '192.168.99.100';
+        $db   = 'db_dev';
         $port = 3306;
-        $user = 'root';
-        $pass = '';
+        $user = 'dbuser';
+        $pass = 'dbpassword';
         $charset = 'utf8mb4';
 
         $dsn = "mysql:host=$host;port=$port;dbname=$db;charset=$charset";
