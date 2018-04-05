@@ -11,7 +11,7 @@ Feature: Provide insight into how Symfony 4 behaves on the unhappy path
       | another great album                | 9           | 2019-01-07T23:22:21+00:00 |
       | now that's what I call Album vol 2 | 23          | 2018-02-06T11:10:09+00:00 |
 
-  @t @symfony_4_edge_case
+  @symfony_4_edge_case
   Scenario: Must have a non-blank title
     Given the request body is:
       """
@@ -25,7 +25,20 @@ Feature: Provide insight into how Symfony 4 behaves on the unhappy path
     Then the response code is 400
     And the response body contains JSON:
     """
-    { "status": "error" }
+    {
+        "status": "error",
+        "errors": {
+            "children": {
+                "title": {
+                    "errors": [
+                        "This value should not be blank."
+                    ]
+                },
+                "release_date": [],
+                "track_count": []
+            }
+        }
+    }
     """
 
   @symfony_4_edge_case
@@ -42,7 +55,20 @@ Feature: Provide insight into how Symfony 4 behaves on the unhappy path
     Then the response code is 400
     And the response body contains JSON:
     """
-    { "status": "error" }
+    {
+        "status": "error",
+        "errors": {
+            "children": {
+                "title": [],
+                "release_date": [],
+                "track_count": {
+                    "errors": [
+                        "This value should be greater than 0."
+                    ]
+                }
+            }
+        }
+    }
     """
 
   @symfony_4_edge_case
@@ -59,5 +85,18 @@ Feature: Provide insight into how Symfony 4 behaves on the unhappy path
     Then the response code is 400
     And the response body contains JSON:
     """
-    { "status": "error" }
+    {
+        "status": "error",
+        "errors": {
+            "children": {
+                "title": [],
+                "release_date": [],
+                "track_count": {
+                    "errors": [
+                        "This value should be greater than 0."
+                    ]
+                }
+            }
+        }
+    }
     """
