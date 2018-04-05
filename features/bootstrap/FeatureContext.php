@@ -32,7 +32,7 @@ class FeatureContext implements Context
     }
 
     /**
-     * @ BeforeScenario
+     * @BeforeScenario
      */
     public function cleanUpDatabase()
     {
