@@ -26,7 +26,6 @@ Feature: Provide a consistent standard JSON API endpoint
     }
     """
 
-  @t
   Scenario: Can get a collection of Albums
     Given I request "/album" using HTTP GET
     Then the response code is 200
@@ -66,6 +65,7 @@ Feature: Provide a consistent standard JSON API endpoint
     When I request "/album" using HTTP POST
     Then the response code is 201
 
+  @t
   Scenario: Can update an existing Album - PUT
     Given the request body is:
       """
